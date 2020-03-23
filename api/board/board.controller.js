@@ -10,22 +10,31 @@ async function addBoard(req, res) {
 async function getBoard(req, res) {
     const board = await boardService.getById(req.params.id)
     res.send(board)
+    
 }
   
 async function getBoards(req, res) {
-    const critaria = JSON.parse(req.query.data)
-    const boards = await boardsService.query(critaria)
-    res.send(boards)
+    // const critaria = JSON.parse(req.query.data)
+    ;
+    
+    try {
+        const boards = await boardService.query()
+        res.json(boards)
+    }
+    catch(err) {
+        console.log(err);
+    }
+    
 }
 
 async function deleteBoard(req, res) {
-    await boardsService.remove(req.params.id)
+    await boardService.remove(req.params.id)
     res.end()
 }
 
 async function updateBoard(req, res) {
     const board = req.body;
-    await boardsService.update(board)
+    await boardService.update(board)
     res.send(board)
 }
 

@@ -10,7 +10,6 @@ async function addBoard(req, res) {
 async function getBoard(req, res) {
     const board = await boardService.getById(req.params.id)
     res.send(board)
-    
 }
   
 async function getBoards(req, res) {

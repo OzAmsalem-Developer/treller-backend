@@ -12,7 +12,7 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'keyboard treller',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }

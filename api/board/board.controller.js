@@ -15,10 +15,9 @@ async function getBoard(req, res) {
   
 async function getBoards(req, res) {
     // const critaria = JSON.parse(req.query.data)
-    ;
     
+    const boards = await boardService.query()
     try {
-        const boards = await boardService.query()
         res.json(boards)
     }
     catch(err) {
@@ -35,7 +34,12 @@ async function deleteBoard(req, res) {
 async function updateBoard(req, res) {
     const board = req.body;
     await boardService.update(board)
-    res.send(board)
+    try {
+        res.json(board)
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 module.exports = {
